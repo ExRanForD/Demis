@@ -1,15 +1,31 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<?php
+include "header.php";
+include $_SERVER['DOCUMENT_ROOT'] . '/database/main.php';
+?>
 
-<h1> Здесь будет тестовое задание! </h1>
+    <div class="container">
+        <?php foreach ($newsArray as $news): ?>
+            <div class="card">
+                <div class="card__body">
+                    <span class="tag tag-red">Technology</span>
+                    <h4><?php echo htmlspecialchars($news['title']);?></h4>
+                    <p><?php echo htmlspecialchars(getFirstSentence($news['content'])); ?></p>
+                </div>
+                <div class="card__footer">
+                    <div class="user">
+                        <div class="user__info">
+                            <small><?php echo htmlspecialchars($news['publication_date']); ?></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach;?>
+    </div>
+    <div class="container">
+        <a href="news.php" class="index-button">Все новости</a>
+        <a href="feedback_form.php" class="index-button">Обратная связь</a>
+    </div>
 
-</body>
-</html>
+<?php
+include "footer.php";
+?>
